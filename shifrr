@@ -18,18 +18,27 @@ d=int(input('Введите ключ для дешифровки: '))
 clist=list(c)
 if d>33:
     d=d//33
+o=0
 for x in range (len(clist)):
     for y in range (len(shifr1)):
         if clist[x]==shifr1[y]:
             if ((y-d)<0):
                 d2=y-d+len(shifr1)
                 clist[x]=shifr[d2]
+                o+=1
                 break
             elif (y-d)==0:
                 clist[x]=shifr[y-d+1]
-                
+                o+=1
             else:
                 clist[x]=shifr[y-d]
+                if clist[x]!=blist[o]:
+                    clist[x]=blist[o]
+                    o+=1
+                    break
+                else:
+                    clist[x]=shifr[y-d]
+                    o+=1
                 break 
 a = ''.join(alist)  
 c = ''.join(clist)
