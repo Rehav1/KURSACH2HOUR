@@ -3,31 +3,34 @@ shifr1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
 a=str(input('Введите шифруемое слово на русском: '))
 b=int(input('Введите ключ: '))
 alist=list(a)
-if b>32:
-    b=b//32
+if b>33:
+    b=b//33
 for j in range (len(alist)):
     for i in range (len(shifr)):
         if alist[j]==shifr[i]:
-            if ((i+b)>len(shifr1)) or ((i+b)==len(shifr1)):
+            if ((i+b)>len(shifr1)):
                 b=i+b-len(shifr)
                 alist[j]=shifr1[b]
             else:
                 alist[j]=shifr1[i+b]
-        
-                
 c=str(input('Введите слово для дешифровки на английском: '))
 d=int(input('Введите ключ для дешифровки: '))
 clist=list(c)
-if d>32:
-    d=d//32
-for j in range (len(clist)):
-    for i in range (len(shifr1)):
-        if clist[j]==shifr1[i]:
-            if ((i-d)<0):
-                d=i-d+len(shifr1)
-                clist[j]=shifr[d]
+if d>33:
+    d=d//33
+for x in range (len(clist)):
+    for y in range (len(shifr1)):
+        if clist[x]==shifr1[y]:
+            if ((y-d)<0):
+                d2=y-d+len(shifr1)
+                clist[x]=shifr[d2]
+                break
+            elif (y-d)==0:
+                clist[x]=shifr[y-d+1]
+                
             else:
-                clist[j]=shifr[i-d]
+                clist[x]=shifr[y-d]
+                break 
 a = ''.join(alist)  
 c = ''.join(clist)
 print('Зашифрованное слово:',a)
