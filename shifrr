@@ -1,0 +1,34 @@
+shifr = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ъ', 'ы', 'ю', 'я']
+shifr1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '|', '^', '&', '(', '?', '!']
+a=str(input('Введите шифруемое слово на русском: '))
+b=int(input('Введите ключ: '))
+alist=list(a)
+if b>32:
+    b=b//32
+for j in range (len(alist)):
+    for i in range (len(shifr)):
+        if alist[j]==shifr[i]:
+            if ((i+b)>len(shifr1)) or ((i+b)==len(shifr1)):
+                b=i+b-len(shifr)
+                alist[j]=shifr1[b]
+            else:
+                alist[j]=shifr1[i+b]
+        
+                
+c=str(input('Введите слово для дешифровки на английском: '))
+d=int(input('Введите ключ для дешифровки: '))
+clist=list(c)
+if d>32:
+    d=d//32
+for j in range (len(clist)):
+    for i in range (len(shifr1)):
+        if clist[j]==shifr1[i]:
+            if ((i-d)<0):
+                d=i-d+len(shifr1)
+                clist[j]=shifr[d]
+            else:
+                clist[j]=shifr[i-d]
+a = ''.join(alist)  
+c = ''.join(clist)
+print('Зашифрованное слово:',a)
+print('Расшифрованное слово:',c)
